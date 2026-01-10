@@ -12,6 +12,8 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Profile from "./components/Profile/Profile";
 
+import FloatingButtons from "./components/FloatingButtons/FloatingButtons";
+
 function App() {
   const getPage = () =>
     window.location.hash.replace("#", "") || "home";
@@ -25,21 +27,22 @@ function App() {
       window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  /* 🔐 AUTH (FULL SCREEN) */
+  /* 🔐 AUTH */
   if (page === "login") return <Login />;
   if (page === "signup") return <Signup />;
 
-  /* 👤 PROFILE (FULL PAGE) */
+  /* 👤 PROFILE */
   if (page === "profile") {
     return (
       <>
         <Header />
         <Profile />
+        <FloatingButtons />
       </>
     );
   }
 
-  /* 🌐 MAIN WEBSITE (STACKED FLOW) */
+  /* 🌐 MAIN WEBSITE */
   return (
     <>
       <Header />
@@ -65,6 +68,9 @@ function App() {
       </section>
 
       <Footer />
+
+      {/* ✅ GLOBAL FLOATING BUTTONS */}
+      <FloatingButtons />
     </>
   );
 }
