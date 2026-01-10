@@ -1,0 +1,87 @@
+.auth-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #050505, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.auth-card {
+  background: #0e1116;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+.auth-card h2 {
+  color: #ffd700;
+  margin-bottom: 24px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #1a1f29;
+  color: #fff;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field span {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  cursor: pointer;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ffb703, #ff8c00);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.error-msg {
+  color: #ff4d4d;
+  margin-bottom: 12px;
+}
+
+.success-msg {
+  color: #00ff7f;
+  margin-bottom: 12px;
+}
+
+.auth-switch {
+  margin-top: 18px;
+  color: #aaa;
+}
+
+.auth-switch span {
+  color: #00ff7f;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.forgot {
+  font-size: 13px;
+  margin-top: 8px;
+  color: #aaa;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 28px;
+  }
+}

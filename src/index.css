@@ -1,0 +1,47 @@
+/* ===============================
+   GLOBAL RESET
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   FULL PAGE BACKGROUND GRID
+================================ */
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: #050505;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* React root */
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* GLOBAL GRID LAYER */
+#root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 65px 65px;
+  opacity: 0;
+  animation: gridFadeIn 1.8s ease forwards;
+  pointer-events: none;
+}
+
+/* Grid fade-in */
+@keyframes gridFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 0.4; }
+}
