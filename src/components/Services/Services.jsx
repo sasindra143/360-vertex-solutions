@@ -1,4 +1,5 @@
 import "./Services.css";
+import { Link } from "react-router-dom";
 
 function Services() {
   const services = [
@@ -9,7 +10,8 @@ function Services() {
         "Responsive, fast & SEO-optimized builds",
         "Focused on real business conversion",
       ],
-      link: "#",
+      link: "/web-development",
+      cta: "Explore Web Development",
     },
     {
       title: "ATS Resume Building",
@@ -18,7 +20,8 @@ function Services() {
         "Recruiter-focused keyword strategy",
         "Designed for real shortlisting",
       ],
-      link: "#",
+      link: "/resume-building",
+      cta: "Explore Resume Services",
     },
     {
       title: "Portfolio Creation",
@@ -27,7 +30,8 @@ function Services() {
         "Real project-based showcases",
         "Optimized for hiring managers",
       ],
-      link: "#",
+      link: "/portfolio-creation",
+      cta: "Explore Portfolio Creation",
     },
     {
       title: "Interview Preparation",
@@ -36,7 +40,8 @@ function Services() {
         "Technical + HR round preparation",
         "Based on actual hiring trends",
       ],
-      link: "#",
+      link: "/interview-prep",
+      cta: "Explore Interview Prep",
     },
     {
       title: "Project Development",
@@ -45,7 +50,8 @@ function Services() {
         "Industry-aligned implementations",
         "Used for resumes & portfolios",
       ],
-      link: "#",
+      link: "/project-development",
+      cta: "Explore Projects",
     },
     {
       title: "Graphic Design & Branding",
@@ -54,7 +60,8 @@ function Services() {
         "Brand-focused visual identity",
         "Designed for digital growth",
       ],
-      link: "#",
+      link: "/graphic-design",
+      cta: "Explore Branding",
     },
   ];
 
@@ -81,9 +88,10 @@ function Services() {
                 ))}
               </ul>
 
-              <a href={service.link} className="service-btn">
-                Explore →
-              </a>
+              {/* SERVICE-SPECIFIC CTA */}
+              <Link to={service.link} className="service-btn">
+                {service.cta} →
+              </Link>
             </div>
           ))}
         </div>
@@ -92,5 +100,4 @@ function Services() {
   );
 }
 
-/* ✅ THIS LINE FIXES YOUR ERROR */
 export default Services;

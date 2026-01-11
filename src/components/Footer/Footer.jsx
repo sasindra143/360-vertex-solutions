@@ -46,7 +46,7 @@ function Footer() {
         <div className="footer-social">
           <h4>Connect With Us</h4>
           <div className="social-icons">
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+            <a href="www.linkedin.com/in/sasindra-madduri" target="_blank" rel="noreferrer">
               <FaLinkedinIn />
             </a>
             <a href="https://www.instagram.com" target="_blank" rel="noreferrer">

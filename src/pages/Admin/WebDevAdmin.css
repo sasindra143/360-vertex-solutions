@@ -1,0 +1,123 @@
+/* ===============================
+   ADMIN PAGE WRAPPER
+================================ */
+.webdev-admin {
+  min-height: 100vh;
+  background: #0b0f1a;
+  color: #ffffff;
+  padding: 100px 20px;
+}
+
+/* ===============================
+   TITLE
+================================ */
+.webdev-admin h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ===============================
+   FORM
+================================ */
+.webdev-admin .admin-form {
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  background: #111629;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+/* INPUTS */
+.webdev-admin .admin-form input,
+.webdev-admin .admin-form textarea {
+  width: 100%;
+  background: #0b0f1a;
+  color: #ffffff;
+  border: 1px solid #1e2440;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.webdev-admin .admin-form input::placeholder,
+.webdev-admin .admin-form textarea::placeholder {
+  color: #8f96b3;
+}
+
+/* FOCUS */
+.webdev-admin .admin-form input:focus,
+.webdev-admin .admin-form textarea:focus {
+  outline: none;
+  border-color: #f5c400;
+}
+
+/* SUBMIT BUTTON */
+.webdev-admin .admin-form button {
+  width: 100%;
+  padding: 14px;
+  background: #f5c400;
+  color: #0b0f1a;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.webdev-admin .admin-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(245, 196, 0, 0.3);
+}
+
+/* ===============================
+   PROJECT LIST
+================================ */
+.webdev-admin .admin-list {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.webdev-admin .admin-card {
+  background: #111629;
+  padding: 16px 18px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.webdev-admin .admin-card strong {
+  font-size: 15px;
+}
+
+/* DELETE BUTTON */
+.webdev-admin .admin-card button {
+  background: transparent;
+  color: #ff5c5c;
+  border: 1px solid #ff5c5c;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.15s ease;
+}
+
+.webdev-admin .admin-card button:hover {
+  background: rgba(255, 92, 92, 0.15);
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 600px) {
+  .webdev-admin {
+    padding: 80px 14px;
+  }
+
+  .webdev-admin h1 {
+    font-size: 22px;
+  }
+}

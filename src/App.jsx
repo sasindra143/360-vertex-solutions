@@ -1,48 +1,31 @@
-import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
+/* LAYOUT */
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import FloatingButtons from "./components/FloatingButtons/FloatingButtons";
+
+/* MAIN SECTIONS */
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Testimonials from "./components/Testimonials/Testimonials";
 import Contact from "./components/Contact/Contact";
-import Footer from "./components/Footer/Footer";
 
+/* AUTH */
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Profile from "./components/Profile/Profile";
 
-import FloatingButtons from "./components/FloatingButtons/FloatingButtons";
+/* SERVICE PAGES */
+import WebDevelopment from "./pages/WebDevelopment/WebDevelopment";
+import Consultation from "./pages/WebDevelopment/Consultation";
 
-function App() {
-  const getPage = () =>
-    window.location.hash.replace("#", "") || "home";
+/* ADMIN (WEB DEVELOPMENT ONLY) */
+import WebDevAdmin from "./pages/Admin/WebDevAdmin";
 
-  const [page, setPage] = useState(getPage());
-
-  useEffect(() => {
-    const onHashChange = () => setPage(getPage());
-    window.addEventListener("hashchange", onHashChange);
-    return () =>
-      window.removeEventListener("hashchange", onHashChange);
-  }, []);
-
-  /* 🔐 AUTH */
-  if (page === "login") return <Login />;
-  if (page === "signup") return <Signup />;
-
-  /* 👤 PROFILE */
-  if (page === "profile") {
-    return (
-      <>
-        <Header />
-        <Profile />
-        <FloatingButtons />
-      </>
-    );
-  }
-
-  /* 🌐 MAIN WEBSITE */
+/* HOME PAGE (COMPOSED) */
+function HomePage() {
   return (
     <>
       <Header />
@@ -68,10 +51,70 @@ function App() {
       </section>
 
       <Footer />
-
-      {/* ✅ GLOBAL FLOATING BUTTONS */}
       <FloatingButtons />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      {/* MAIN WEBSITE */}
+      <Route path="/" element={<HomePage />} />
+
+      {/* AUTH */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* PROFILE */}
+      <Route
+        path="/profile"
+        element={
+          <>
+            <Header />
+            <Profile />
+            <FloatingButtons />
+          </>
+        }
+      />
+
+      {/* SERVICE: WEB DEVELOPMENT */}
+      <Route
+        path="/web-development"
+        element={
+          <>
+            <Header />
+            <WebDevelopment />
+            <Footer />
+            <FloatingButtons />
+          </>
+        }
+      />
+
+      {/* SERVICE: WEB DEVELOPMENT → CONSULTATION */}
+      <Route
+        path="/web-development/consultation"
+        element={
+          <>
+            <Header />
+            <Consultation />
+            <Footer />
+            <FloatingButtons />
+          </>
+        }
+      />
+
+      {/* ADMIN: WEB DEVELOPMENT PROJECTS */}
+      <Route
+        path="/admin/web-development"
+        element={
+          <>
+            <Header />
+            <WebDevAdmin />
+          </>
+        }
+      />
+    </Routes>
   );
 }
 
