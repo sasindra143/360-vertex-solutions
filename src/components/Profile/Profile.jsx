@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 function Profile() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const u = JSON.parse(localStorage.getItem("vertexLoggedInUser"));
@@ -11,6 +13,8 @@ function Profile() {
 
   const updateAvatar = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -27,17 +31,31 @@ function Profile() {
 
   return (
     <div className="profile-page">
+      {/* ❌ CLOSE BUTTON */}
+      <button
+        className="profile-close"
+        onClick={() => navigate("/")}
+        aria-label="Close profile"
+      >
+        ✕
+      </button>
+
       <h1>My Profile</h1>
 
-      <img src={user.avatar} className="profile-big" />
+      <img src={user.avatar} alt="Profile Avatar" className="profile-big" />
 
       <label className="upload-btn">
         Change Photo
         <input type="file" hidden onChange={updateAvatar} />
       </label>
 
-      <p><strong>Name:</strong> {user.name}</p>
-      <p><strong>Email:</strong> {user.email}</p>
+      <p>
+        <strong>Name:</strong> {user.name}
+      </p>
+
+      <p>
+        <strong>Email:</strong> {user.email}
+      </p>
     </div>
   );
 }

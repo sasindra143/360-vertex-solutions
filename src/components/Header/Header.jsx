@@ -1,15 +1,19 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [user, setUser] = useState(null);
   const [openProfile, setOpenProfile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const profileRef = useRef(null);
 
   /* ===============================
-     SYNC USER
-  ================================ */
+     SYNC USER FROM LOCALSTORAGE
+  =============================== */
   useEffect(() => {
     const sync = () => {
       const u = localStorage.getItem("vertexLoggedInUser");
@@ -22,7 +26,7 @@ function Header() {
 
   /* ===============================
      CLOSE PROFILE DROPDOWN
-  ================================ */
+  =============================== */
   useEffect(() => {
     const close = (e) => {
       if (profileRef.current && !profileRef.current.contains(e.target)) {
@@ -34,32 +38,48 @@ function Header() {
   }, []);
 
   /* ===============================
-     NAVIGATION (NO HEADER DISAPPEAR)
-  ================================ */
-  const go = (id) => {
-    window.location.hash = id;
-
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
+     SCROLL TO SECTION (HOME PAGE ONLY)
+  =============================== */
+  const scrollTo = (id) => {
+    // If not on home page, go home first
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        section?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const section = document.getElementById(id);
+      section?.scrollIntoView({ behavior: "smooth" });
     }
 
     setOpenMenu(false);
     setOpenProfile(false);
   };
 
+  /* ===============================
+     ROUTE NAVIGATION
+  =============================== */
+  const goPage = (path) => {
+    navigate(path);
+    setOpenMenu(false);
+    setOpenProfile(false);
+  };
+
+  /* ===============================
+     LOGOUT
+  =============================== */
   const logout = () => {
     localStorage.removeItem("vertexLoggedInUser");
     window.dispatchEvent(new Event("storage"));
-    go("home");
+    navigate("/");
   };
 
   return (
     <header className="header">
       <div className="nav">
-
         {/* LOGO */}
-        <div className="logo" onClick={() => go("home")}>
+        <div className="logo" onClick={() => scrollTo("home")}>
           <img
             src="https://res.cloudinary.com/dvknx0hpm/image/upload/v1764815507/ChatGPT_Image_Dec_4__2025__07_59_58_AM-removebg-preview_bj32m0.png"
             alt="360 Vertex Solutions"
@@ -72,43 +92,50 @@ function Header() {
 
         {/* DESKTOP LINKS */}
         <div className="links">
-          <button onClick={() => go("home")}>Home</button>
-          <button onClick={() => go("about")}>About</button>
-          <button onClick={() => go("services")}>Services</button>
-          <button onClick={() => go("testimonials")}>Testimonials</button>
-          <button onClick={() => go("contact")}>Contact</button>
+          <button onClick={() => scrollTo("home")}>Home</button>
+          <button onClick={() => scrollTo("about")}>About</button>
+          <button onClick={() => scrollTo("services")}>Services</button>
+          <button onClick={() => scrollTo("testimonials")}>Testimonials</button>
+          <button onClick={() => scrollTo("contact")}>Contact</button>
         </div>
 
-        {/* DESKTOP AUTH / PROFILE */}
+        {/* AUTH / PROFILE */}
         {!user ? (
           <div className="auth">
-            <button className="auth-btn" onClick={() => go("login")}>Login</button>
-            <button className="auth-btn" onClick={() => go("signup")}>Sign Up</button>
+            <button className="auth-btn" onClick={() => goPage("/login")}>
+              Login
+            </button>
+            <button className="auth-btn" onClick={() => goPage("/signup")}>
+              Sign Up
+            </button>
           </div>
         ) : (
           <div className="profile" ref={profileRef}>
             <img
               src={user.avatar}
               className="avatar"
+              alt="avatar"
               onClick={() => setOpenProfile(!openProfile)}
             />
             {openProfile && (
               <div className="dropdown">
                 <div className="user">
-                  <img src={user.avatar} />
+                  <img src={user.avatar} alt="avatar" />
                   <div>
                     <strong>{user.name}</strong>
                     <span>{user.email}</span>
                   </div>
                 </div>
-                <button onClick={() => go("profile")}>View Profile</button>
-                <button className="logout" onClick={logout}>Logout</button>
+                <button onClick={() => goPage("/profile")}>View Profile</button>
+                <button className="logout" onClick={logout}>
+                  Logout
+                </button>
               </div>
             )}
           </div>
         )}
 
-        {/* HAMBURGER (MOBILE ONLY) */}
+        {/* HAMBURGER */}
         <button
           className={`hamburger ${openMenu ? "active" : ""}`}
           onClick={() => setOpenMenu(!openMenu)}
@@ -121,21 +148,27 @@ function Header() {
 
       {/* MOBILE MENU */}
       <div className={`mobile-menu ${openMenu ? "show" : ""}`}>
-        <button onClick={() => go("home")}>Home</button>
-        <button onClick={() => go("about")}>About</button>
-        <button onClick={() => go("services")}>Services</button>
-        <button onClick={() => go("testimonials")}>Testimonials</button>
-        <button onClick={() => go("contact")}>Contact</button>
+        <button onClick={() => scrollTo("home")}>Home</button>
+        <button onClick={() => scrollTo("about")}>About</button>
+        <button onClick={() => scrollTo("services")}>Services</button>
+        <button onClick={() => scrollTo("testimonials")}>Testimonials</button>
+        <button onClick={() => scrollTo("contact")}>Contact</button>
 
         {!user ? (
           <>
-            <button className="auth-btn" onClick={() => go("login")}>Login</button>
-            <button className="auth-btn" onClick={() => go("signup")}>Sign Up</button>
+            <button className="auth-btn" onClick={() => goPage("/login")}>
+              Login
+            </button>
+            <button className="auth-btn" onClick={() => goPage("/signup")}>
+              Sign Up
+            </button>
           </>
         ) : (
           <>
-            <button onClick={() => go("profile")}>View Profile</button>
-            <button className="logout" onClick={logout}>Logout</button>
+            <button onClick={() => goPage("/profile")}>View Profile</button>
+            <button className="logout" onClick={logout}>
+              Logout
+            </button>
           </>
         )}
       </div>

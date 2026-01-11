@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getGravatarUrl } from "../../utils/gravatar";
 import "./Login.css";
 
-function Login({ goToSignup, goToForgot }) {
+function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
@@ -29,33 +32,26 @@ function Login({ goToSignup, goToForgot }) {
       avatar: getGravatarUrl(user.email),
     };
 
-  localStorage.setItem(
-  "vertexLoggedInUser",
-  JSON.stringify(user)
-);
+    localStorage.setItem(
+      "vertexLoggedInUser",
+      JSON.stringify(loggedUser)
+    );
 
-// 🔥 THIS IS REQUIRED
-window.dispatchEvent(new Event("storage"));
-
-window.location.hash = "#home";
-
+    window.dispatchEvent(new Event("storage"));
+    navigate("/"); // HOME
   };
 
   return (
     <div className="login-wrapper">
-      <button className="close-btn" onClick={() => (window.location.hash = "#home")}>
+      {/* CLOSE → HOME */}
+      <button className="close-btn" onClick={() => navigate("/")}>
         ❌
       </button>
 
       <form className="login-card" onSubmit={submit}>
         <h2>Login to 360 Vertex Solutions</h2>
 
-        {error && (
-          <div className="error-box">
-            <span>❌</span>
-            <span>{error}</span>
-          </div>
-        )}
+        {error && <p className="error-msg">{error}</p>}
 
         <input
           type="email"
@@ -78,13 +74,16 @@ window.location.hash = "#home";
 
         <button type="submit">Login</button>
 
+        {/* ✅ FIXED */}
         <p className="auth-links">
-          <span onClick={goToForgot}>Forgot password?</span>
+          <span onClick={() => navigate("/forgot-password")}>
+            Forgot password?
+          </span>
         </p>
 
         <p className="auth-links">
           Don’t have an account?
-          <span onClick={goToSignup}> Sign Up</span>
+          <span onClick={() => navigate("/signup")}> Sign Up</span>
         </p>
       </form>
     </div>

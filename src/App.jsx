@@ -1,11 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
-/* LAYOUT */
+/* GLOBAL LAYOUT COMPONENTS */
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import FloatingButtons from "./components/FloatingButtons/FloatingButtons";
 
-/* MAIN SECTIONS */
+/* HOME SECTIONS */
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
@@ -15,21 +15,69 @@ import Contact from "./components/Contact/Contact";
 /* AUTH */
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import ForgotPassword from "./components/Auth/ForgotPassword";
+import ResetPassword from "./components/Auth/ResetPassword";
 import Profile from "./components/Profile/Profile";
 
-/* SERVICE PAGES */
+/* WEB DEVELOPMENT */
 import WebDevelopment from "./pages/WebDevelopment/WebDevelopment";
 import Consultation from "./pages/WebDevelopment/Consultation";
 
-/* ADMIN (WEB DEVELOPMENT ONLY) */
+/* ADMIN */
 import WebDevAdmin from "./pages/Admin/WebDevAdmin";
 
-/* HOME PAGE (COMPOSED) */
-function HomePage() {
+/* ===============================
+   LAYOUTS
+================================ */
+
+/* MAIN WEBSITE LAYOUT */
+function HomeLayout() {
   return (
     <>
       <Header />
+      <Outlet />
+      <Footer />
+      <FloatingButtons />
+    </>
+  );
+}
 
+/* WEB DEVELOPMENT LAYOUT
+   - No global header
+   - Page has its own hero/header
+*/
+function WebDevLayout() {
+  return (
+    <>
+      <Outlet />
+      <Footer />
+      <FloatingButtons />
+    </>
+  );
+}
+
+/* AUTH LAYOUT */
+function AuthLayout() {
+  return <Outlet />;
+}
+
+/* ADMIN LAYOUT */
+function AdminLayout() {
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
+}
+
+/* ===============================
+   PAGES
+================================ */
+
+function HomePage() {
+  return (
+    <>
       <section id="home">
         <Hero />
       </section>
@@ -49,73 +97,58 @@ function HomePage() {
       <section id="contact">
         <Contact />
       </section>
-
-      <Footer />
-      <FloatingButtons />
     </>
   );
 }
 
-function App() {
+function NotFound() {
   return (
-    <Routes>
-      {/* MAIN WEBSITE */}
-      <Route path="/" element={<HomePage />} />
-
-      {/* AUTH */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-
-      {/* PROFILE */}
-      <Route
-        path="/profile"
-        element={
-          <>
-            <Header />
-            <Profile />
-            <FloatingButtons />
-          </>
-        }
-      />
-
-      {/* SERVICE: WEB DEVELOPMENT */}
-      <Route
-        path="/web-development"
-        element={
-          <>
-            <Header />
-            <WebDevelopment />
-            <Footer />
-            <FloatingButtons />
-          </>
-        }
-      />
-
-      {/* SERVICE: WEB DEVELOPMENT → CONSULTATION */}
-      <Route
-        path="/web-development/consultation"
-        element={
-          <>
-            <Header />
-            <Consultation />
-            <Footer />
-            <FloatingButtons />
-          </>
-        }
-      />
-
-      {/* ADMIN: WEB DEVELOPMENT PROJECTS */}
-      <Route
-        path="/admin/web-development"
-        element={
-          <>
-            <Header />
-            <WebDevAdmin />
-          </>
-        }
-      />
-    </Routes>
+    <div style={{ padding: "120px", textAlign: "center" }}>
+      <h1>404</h1>
+      <p>Page not found</p>
+    </div>
   );
 }
 
-export default App;
+/* ===============================
+   ROUTES
+================================ */
+
+export default function App() {
+  return (
+    <Routes>
+
+      {/* MAIN WEBSITE */}
+      <Route element={<HomeLayout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+
+      {/* WEB DEVELOPMENT */}
+      <Route element={<WebDevLayout />}>
+        <Route path="/web-development" element={<WebDevelopment />} />
+        <Route
+          path="/web-development/consultation"
+          element={<Consultation />}
+        />
+      </Route>
+
+      {/* AUTH */}
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+      </Route>
+
+      {/* ADMIN */}
+      <Route element={<AdminLayout />}>
+        <Route path="/admin/web-development" element={<WebDevAdmin />} />
+      </Route>
+
+      {/* 404 */}
+      <Route path="*" element={<NotFound />} />
+
+    </Routes>
+  );
+}

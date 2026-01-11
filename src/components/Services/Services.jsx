@@ -1,7 +1,7 @@
 import "./Services.css";
 import { Link } from "react-router-dom";
 
-function Services() {
+export default function Services() {
   const services = [
     {
       title: "Website Development",
@@ -66,38 +66,44 @@ function Services() {
   ];
 
   return (
-    <section className="services-section" id="services">
+    <section className="services-section" id="home-services">
       <div className="services-container">
-        <h2 className="services-title">
-          Our <span>Services</span>
-        </h2>
+        <header className="services-header">
+          <h2 className="services-title">
+            Our <span>Services</span>
+          </h2>
 
-        <p className="services-intro">
-          Execution-focused digital and career services built for measurable
-          results — not promises.
-        </p>
+          <p className="services-intro">
+            Execution-focused digital and career services built for
+            <strong> measurable results</strong> — not empty promises.
+          </p>
+        </header>
 
         <div className="services-grid">
           {services.map((service, index) => (
-            <div className="service-card" key={index}>
-              <h3>{service.title}</h3>
+            <article className="service-card" key={index}>
+              <div className="service-content">
+                <h3>{service.title}</h3>
 
-              <ul>
-                {service.lines.map((line, i) => (
-                  <li key={i}>{line}</li>
-                ))}
-              </ul>
+                <ul>
+                  {service.lines.map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
+                </ul>
+              </div>
 
-              {/* SERVICE-SPECIFIC CTA */}
-              <Link to={service.link} className="service-btn">
+              {/* 🔥 NAVIGATION FIXED */}
+              <Link
+                to={service.link}
+                className="service-btn"
+                onClick={() => window.scrollTo(0, 0)}
+              >
                 {service.cta} →
               </Link>
-            </div>
+            </article>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-export default Services;

@@ -1,156 +1,119 @@
 import { useState, useEffect } from "react";
 import "./WebDevAdmin.css";
 
-const WebDevAdmin = () => {
+const STORAGE_KEY = "clientWorkProjects";
+
+export default function WebDevAdmin() {
   const [projects, setProjects] = useState([]);
+
   const [form, setForm] = useState({
     title: "",
-    type: "",
-    goal: "",
-    solution: "",
-    result: "",
-    liveLink: "",
-    instaLink: "",
-    images: "",
+    description1: "",
+    description2: "",
+    description3: "",
+    clientName: "",
+    clientImage: "",
+    clientReview: "",
+    rating: "5.0",
+    website: "",
+    instagram: "",
+    media: "",
   });
 
+  /* LOAD */
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("webDevProjects")) || [];
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     setProjects(saved);
   }, []);
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
+  /* ADD PROJECT */
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newProject = {
       id: Date.now(),
       title: form.title,
-      type: form.type,
-      goal: form.goal,
-      solution: form.solution,
-      result: form.result,
-      liveLink: form.liveLink,
-      instaLink: form.instaLink,
-      images: form.images.split(",").map((img) => img.trim()),
+      description: [
+        form.description1,
+        form.description2,
+        form.description3,
+      ],
+      client: {
+        name: form.clientName,
+        image: form.clientImage,
+        reviewText: form.clientReview,
+      },
+      rating: form.rating,
+      website: form.website,
+      instagram: form.instagram,
+      media: form.media.split(",").map((src) => ({
+        type: src.trim().endsWith(".mp4") ? "video" : "image",
+        src: src.trim(),
+      })),
     };
 
     const updated = [newProject, ...projects];
+
     setProjects(updated);
-    localStorage.setItem("webDevProjects", JSON.stringify(updated));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+
+    // 🔥 FORCE FRONTEND UPDATE
+    window.dispatchEvent(new Event("projectsUpdated"));
 
     setForm({
       title: "",
-      type: "",
-      goal: "",
-      solution: "",
-      result: "",
-      liveLink: "",
-      instaLink: "",
-      images: "",
+      description1: "",
+      description2: "",
+      description3: "",
+      clientName: "",
+      clientImage: "",
+      clientReview: "",
+      rating: "5.0",
+      website: "",
+      instagram: "",
+      media: "",
     });
   };
 
+  /* DELETE */
   const deleteProject = (id) => {
     const updated = projects.filter((p) => p.id !== id);
     setProjects(updated);
-    localStorage.setItem("webDevProjects", JSON.stringify(updated));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new Event("projectsUpdated"));
   };
 
   return (
     <section className="webdev-admin">
-      <h1>Web Development – Admin Projects</h1>
+      <h1>Client Work – Admin Panel</h1>
 
-      {/* ADMIN FORM */}
       <form className="admin-form" onSubmit={handleSubmit}>
-        <input
-          name="title"
-          placeholder="Project Title"
-          required
-          value={form.title}
-          onChange={handleChange}
-        />
-
-        <input
-          name="type"
-          placeholder="Project Type"
-          required
-          value={form.type}
-          onChange={handleChange}
-        />
-
-        <textarea
-          name="goal"
-          placeholder="Goal"
-          required
-          value={form.goal}
-          onChange={handleChange}
-        />
-
-        <textarea
-          name="solution"
-          placeholder="Solution"
-          required
-          value={form.solution}
-          onChange={handleChange}
-        />
-
-        <textarea
-          name="result"
-          placeholder="Result"
-          required
-          value={form.result}
-          onChange={handleChange}
-        />
-
-        <input
-          name="liveLink"
-          placeholder="Live Website Link"
-          value={form.liveLink}
-          onChange={handleChange}
-        />
-
-        <input
-          name="instaLink"
-          placeholder="Instagram Video Link"
-          value={form.instaLink}
-          onChange={handleChange}
-        />
-
-        <textarea
-          name="images"
-          placeholder="Image URLs (comma separated)"
-          required
-          value={form.images}
-          onChange={handleChange}
-        />
-
-        <button type="submit">Add Web Dev Project</button>
+        <input name="title" placeholder="Project Title" required onChange={handleChange} />
+        <input name="description1" placeholder="Description line 1" required onChange={handleChange} />
+        <input name="description2" placeholder="Description line 2" required onChange={handleChange} />
+        <input name="description3" placeholder="Description line 3" required onChange={handleChange} />
+        <input name="clientName" placeholder="Client Name" required onChange={handleChange} />
+        <input name="clientImage" placeholder="Client Image URL" required onChange={handleChange} />
+        <textarea name="clientReview" placeholder="Client Review" required onChange={handleChange} />
+        <input name="rating" placeholder="Rating" onChange={handleChange} />
+        <input name="website" placeholder="Live Website URL" onChange={handleChange} />
+        <input name="instagram" placeholder="Instagram Reel URL" onChange={handleChange} />
+        <textarea name="media" placeholder="Media URLs (comma separated)" required onChange={handleChange} />
+        <button>Add Client Project</button>
       </form>
 
-      {/* PROJECT LIST */}
       <div className="admin-list">
-        {projects.length === 0 && (
-          <p style={{ textAlign: "center", color: "#8f96b3" }}>
-            No projects added yet.
-          </p>
-        )}
-
         {projects.map((p) => (
           <div key={p.id} className="admin-card">
             <strong>{p.title}</strong>
+            <span>{p.client.name}</span>
             <button onClick={() => deleteProject(p.id)}>Delete</button>
           </div>
         ))}
       </div>
     </section>
   );
-};
-
-export default WebDevAdmin;
+}

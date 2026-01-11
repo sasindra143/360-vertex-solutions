@@ -1,0 +1,109 @@
+.features {
+  padding: 120px 20px;
+  background: #f8fbff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.features-pill {
+  display: inline-block;
+  background: #e0ecff;
+  color: #2563eb;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.features-title {
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 900;
+  margin-bottom: 14px;
+  color: #0f172a;
+}
+
+.features-title span {
+  color: #2563eb;
+}
+
+.features-subtitle {
+  max-width: 700px;
+  margin: 0 auto 50px;
+  color: #475569;
+  font-size: 16px;
+}
+
+/* GRID */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+}
+
+/* CARD */
+.feature-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  text-align: left;
+  box-shadow: 0 30px 60px rgba(37, 99, 235, 0.12);
+  transition: all 0.35s ease;
+  border-top: 4px solid transparent;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 40px 90px rgba(37, 99, 235, 0.2);
+}
+
+/* ICON */
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+/* COLORS */
+.feature-card.green { border-color: #22c55e; }
+.feature-card.blue { border-color: #3b82f6; }
+.feature-card.orange { border-color: #f97316; }
+.feature-card.purple { border-color: #8b5cf6; }
+.feature-card.pink { border-color: #ec4899; }
+.feature-card.cyan { border-color: #06b6d4; }
+
+.feature-card.green .feature-icon { background: #ecfdf5; color: #16a34a; }
+.feature-card.blue .feature-icon { background: #eff6ff; color: #2563eb; }
+.feature-card.orange .feature-icon { background: #fff7ed; color: #ea580c; }
+.feature-card.purple .feature-icon { background: #f5f3ff; color: #7c3aed; }
+.feature-card.pink .feature-icon { background: #fdf2f8; color: #db2777; }
+.feature-card.cyan .feature-icon { background: #ecfeff; color: #0891b2; }
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .features {
+    padding: 90px 16px;
+  }
+}

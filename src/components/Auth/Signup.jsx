@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 
-function Signup({ goToLogin }) {
+function Signup() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -24,7 +27,9 @@ function Signup({ goToLogin }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // 📸 IMAGE UPLOAD + PREVIEW
+  /* ===============================
+     IMAGE UPLOAD + PREVIEW
+  =============================== */
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -37,6 +42,9 @@ function Signup({ goToLogin }) {
     reader.readAsDataURL(file);
   };
 
+  /* ===============================
+     SIGNUP LOGIC
+  =============================== */
   const handleSignup = (e) => {
     e.preventDefault();
 
@@ -73,7 +81,8 @@ function Signup({ goToLogin }) {
       JSON.stringify(userData)
     );
 
-    setSuccess("Signup successful! You can login now.");
+    setSuccess("Signup successful! Redirecting to login…");
+
     setForm({
       name: "",
       email: "",
@@ -81,14 +90,17 @@ function Signup({ goToLogin }) {
       confirmPassword: "",
     });
     setPreview(null);
+
+    // Redirect to login after short delay
+    setTimeout(() => {
+      navigate("/login");
+    }, 1200);
   };
 
   return (
     <div className="signup-wrapper">
-      <button
-        className="close-btn"
-        onClick={() => (window.location.hash = "#home")}
-      >
+      {/* CLOSE → HOME */}
+      <button className="close-btn" onClick={() => navigate("/")}>
         ❌
       </button>
 
@@ -163,7 +175,9 @@ function Signup({ goToLogin }) {
 
         <p className="switch-auth">
           Already have an account?
-          <span onClick={goToLogin}> Login</span>
+          <span onClick={() => navigate("/login")}>
+            {" "}Login
+          </span>
         </p>
       </form>
     </div>

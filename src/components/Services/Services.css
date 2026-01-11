@@ -1,7 +1,11 @@
+/* ================= SERVICES SECTION ================= */
+
 .services-section {
   background: #050505;
   padding: 150px 0;
-  color: #fff;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
 }
 
 .services-container {
@@ -10,8 +14,14 @@
   padding: 0 24px;
 }
 
-.services-title {
+/* HEADER */
+
+.services-header {
   text-align: center;
+  margin-bottom: 80px;
+}
+
+.services-title {
   font-size: 56px;
   font-weight: 900;
   margin-bottom: 20px;
@@ -22,12 +32,13 @@
 }
 
 .services-intro {
-  text-align: center;
   font-size: 20px;
   max-width: 800px;
-  margin: 0 auto 80px;
+  margin: auto;
   color: rgba(255, 255, 255, 0.85);
 }
+
+/* GRID */
 
 .services-grid {
   display: grid;
@@ -35,57 +46,75 @@
   gap: 36px;
 }
 
+/* CARD */
+
 .service-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(180deg, #0b1222, #070b14);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 22px;
   padding: 36px 28px;
-  transition: 0.4s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: 0.4s ease;
+  position: relative;
+  z-index: 2; /* 🔥 REQUIRED */
 }
 
 .service-card:hover {
   transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.7);
 }
 
+/* CONTENT */
+
 .service-card h3 {
-  color: #00ffcc;
   font-size: 24px;
+  color: #00ffcc;
   margin-bottom: 18px;
 }
 
 .service-card ul {
   padding-left: 18px;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 
 .service-card li {
   font-size: 16px;
   line-height: 1.7;
+  margin-bottom: 8px;
 }
+
+/* BUTTON — THIS WAS YOUR REAL BUG */
 
 .service-btn {
   align-self: flex-start;
-  padding: 12px 26px;
+  padding: 14px 28px;
   border-radius: 14px;
   background: linear-gradient(135deg, #ffd700, #ff9f00);
   color: #000;
   font-weight: 800;
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: 0.25s ease;
+  position: relative;
+  z-index: 9999;          /* 🔥 CLICK FIX */
+  pointer-events: auto;  /* 🔥 CLICK FIX */
 }
 
 .service-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(255, 165, 0, 0.6);
+  box-shadow: 0 14px 40px rgba(255, 165, 0, 0.6);
 }
+
+/* RESPONSIVE */
 
 @media (max-width: 1024px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-title {
+    font-size: 44px;
   }
 }
 
@@ -95,6 +124,6 @@
   }
 
   .services-title {
-    font-size: 42px;
+    font-size: 38px;
   }
 }

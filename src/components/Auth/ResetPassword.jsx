@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ResetPassword.css";
 
-function ResetPassword({ token }) {
+function ResetPassword() {
+  const { token } = useParams(); // comes from URL
+  const navigate = useNavigate();
+
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
@@ -10,6 +14,11 @@ function ResetPassword({ token }) {
   const submit = (e) => {
     e.preventDefault();
     setError("");
+
+    if (!token) {
+      setError("Invalid or expired reset link ❌");
+      return;
+    }
 
     if (password.length < 8) {
       setError("Password must be at least 8 characters ❌");
@@ -22,13 +31,19 @@ function ResetPassword({ token }) {
     }
 
     const user = JSON.parse(localStorage.getItem("vertexUser"));
+
+    if (!user) {
+      setError("User not found ❌");
+      return;
+    }
+
     user.password = password;
     localStorage.setItem("vertexUser", JSON.stringify(user));
 
-    setSuccess("Password reset successful ✅");
+    setSuccess("✅ Password reset successful! Redirecting to login...");
 
     setTimeout(() => {
-      window.location.hash = "#login";
+      navigate("/login");
     }, 1500);
   };
 
@@ -54,7 +69,7 @@ function ResetPassword({ token }) {
           onChange={(e) => setConfirm(e.target.value)}
         />
 
-        <button>Reset Password</button>
+        <button type="submit">Reset Password</button>
       </form>
     </div>
   );
