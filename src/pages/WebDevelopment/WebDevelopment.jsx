@@ -12,35 +12,30 @@ import FinalCTA from "./FinalCTA/FinalCTA";
 export default function WebDevelopment() {
   const navigate = useNavigate();
 
-  // ✅ FORCE PAGE TO START AT TOP
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const goBackToServices = () => {
+    navigate("/#services");
+  };
+
   return (
     <main className="webdev-page">
-      {/* 🔙 BACK BUTTON */}
-      <button
-        className="webdev-back-btn"
-        onClick={() => navigate("/services")}
-        aria-label="Back to services"
-      >
-        ← Back to Services
-      </button>
+      {/* 🔙 STICKY BACK BUTTON */}
+      <div className="webdev-back-wrapper">
+        <button
+          className="webdev-back-btn"
+          onClick={goBackToServices}
+        >
+          ← Back to Services
+        </button>
+      </div>
 
-      {/* HERO */}
       <Hero />
-
-      {/* WEB DEV SERVICES */}
       <Services />
-
-      {/* FEATURES */}
       <Features />
-
-      {/* CLIENT WORK */}
       <ClientWork />
-
-      {/* CTA */}
       <FinalCTA />
     </main>
   );

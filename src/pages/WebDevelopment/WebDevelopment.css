@@ -309,3 +309,56 @@
     font-size: 13px;
   }
 }
+
+
+/* =========================================================
+   STICKY BACK BUTTON – SERVICES RETURN
+========================================================= */
+
+.webdev-back-wrapper {
+  position: sticky;
+  top: 14px;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.webdev-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--primary);
+
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.webdev-back-btn:hover {
+  background: var(--primary);
+  color: #000;
+  transform: translateX(-4px);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .webdev-back-wrapper {
+    padding-left: 12px;
+  }
+
+  .webdev-back-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

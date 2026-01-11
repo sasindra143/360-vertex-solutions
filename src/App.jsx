@@ -24,6 +24,7 @@ import WebDevelopment from "./pages/WebDevelopment/WebDevelopment";
 import Consultation from "./pages/WebDevelopment/Consultation";
 
 /* ADMIN */
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 import WebDevAdmin from "./pages/Admin/WebDevAdmin";
 
 /* ===============================
@@ -42,10 +43,7 @@ function HomeLayout() {
   );
 }
 
-/* WEB DEVELOPMENT LAYOUT
-   - No global header
-   - Page has its own hero/header
-*/
+/* WEB DEVELOPMENT LAYOUT */
 function WebDevLayout() {
   return (
     <>
@@ -61,7 +59,7 @@ function AuthLayout() {
   return <Outlet />;
 }
 
-/* ADMIN LAYOUT */
+/* ADMIN LAYOUT (NO FOOTER, NO FLOATING BUTTONS) */
 function AdminLayout() {
   return (
     <>
@@ -117,7 +115,6 @@ function NotFound() {
 export default function App() {
   return (
     <Routes>
-
       {/* MAIN WEBSITE */}
       <Route element={<HomeLayout />}>
         <Route path="/" element={<HomePage />} />
@@ -142,13 +139,16 @@ export default function App() {
       </Route>
 
       {/* ADMIN */}
-      <Route element={<AdminLayout />}>
-        <Route path="/admin/web-development" element={<WebDevAdmin />} />
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} />
+        <Route
+          path="web-development"
+          element={<WebDevAdmin />}
+        />
       </Route>
 
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
-
     </Routes>
   );
 }
