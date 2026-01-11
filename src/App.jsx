@@ -23,8 +23,7 @@ import Profile from "./components/Profile/Profile";
 import WebDevelopment from "./pages/WebDevelopment/WebDevelopment";
 import Consultation from "./pages/WebDevelopment/Consultation";
 
-/* ADMIN */
-import AdminDashboard from "./pages/Admin/AdminDashboard";
+/* ADMIN (ONLY ONE ADMIN PAGE) */
 import WebDevAdmin from "./pages/Admin/WebDevAdmin";
 
 /* ===============================
@@ -59,7 +58,7 @@ function AuthLayout() {
   return <Outlet />;
 }
 
-/* ADMIN LAYOUT (NO FOOTER, NO FLOATING BUTTONS) */
+/* ADMIN LAYOUT */
 function AdminLayout() {
   return (
     <>
@@ -138,11 +137,10 @@ export default function App() {
         <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Route>
 
-      {/* ADMIN */}
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<AdminDashboard />} />
+      {/* ADMIN – WEB DEVELOPMENT ONLY */}
+      <Route element={<AdminLayout />}>
         <Route
-          path="web-development"
+          path="/admin/web-development"
           element={<WebDevAdmin />}
         />
       </Route>

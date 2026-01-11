@@ -20,14 +20,15 @@ export default function WebDevAdmin() {
     media: "",
   });
 
-  /* LOAD */
+  /* LOAD FROM LOCAL STORAGE */
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     setProjects(saved);
   }, []);
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   /* ADD PROJECT */
   const handleSubmit = (e) => {
@@ -60,7 +61,6 @@ export default function WebDevAdmin() {
     setProjects(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
 
-    // 🔥 FORCE FRONTEND UPDATE
     window.dispatchEvent(new Event("projectsUpdated"));
 
     setForm({
@@ -78,7 +78,7 @@ export default function WebDevAdmin() {
     });
   };
 
-  /* DELETE */
+  /* DELETE PROJECT */
   const deleteProject = (id) => {
     const updated = projects.filter((p) => p.id !== id);
     setProjects(updated);
@@ -88,7 +88,7 @@ export default function WebDevAdmin() {
 
   return (
     <section className="webdev-admin">
-      <h1>Client Work – Admin Panel</h1>
+      <h1>Web Development – Admin Panel</h1>
 
       <form className="admin-form" onSubmit={handleSubmit}>
         <input name="title" placeholder="Project Title" required onChange={handleChange} />
@@ -100,9 +100,9 @@ export default function WebDevAdmin() {
         <textarea name="clientReview" placeholder="Client Review" required onChange={handleChange} />
         <input name="rating" placeholder="Rating" onChange={handleChange} />
         <input name="website" placeholder="Live Website URL" onChange={handleChange} />
-        <input name="instagram" placeholder="Instagram Reel URL" onChange={handleChange} />
+        <input name="instagram" placeholder="Instagram URL" onChange={handleChange} />
         <textarea name="media" placeholder="Media URLs (comma separated)" required onChange={handleChange} />
-        <button>Add Client Project</button>
+        <button type="submit">Add Client Project</button>
       </form>
 
       <div className="admin-list">
