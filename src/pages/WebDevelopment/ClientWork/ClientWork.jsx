@@ -16,8 +16,6 @@ export default function ClientWork() {
 
   useEffect(() => {
     loadProjects();
-
-    // 🔥 LIVE SYNC WITH ADMIN
     window.addEventListener("projectsUpdated", loadProjects);
     return () =>
       window.removeEventListener("projectsUpdated", loadProjects);
@@ -58,7 +56,11 @@ export default function ClientWork() {
               </ul>
 
               <div className="cw-client-box">
-                <img src={project.client.image} className="cw-client-img" />
+                <img
+                  src={project.client.image}
+                  alt={project.client.name}
+                  className="cw-client-img"
+                />
                 <div>
                   <p className="cw-client-name">{project.client.name}</p>
                   <p className="cw-client-review">
@@ -69,31 +71,60 @@ export default function ClientWork() {
 
               <div className="cw-footer">
                 ⭐ {project.rating}
-                <a href={project.website} target="_blank">Live Website</a>
-                <a href={project.instagram} target="_blank">Instagram</a>
+                <a href={project.website} target="_blank" rel="noreferrer">
+                  Live Website
+                </a>
+                <a href={project.instagram} target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {activeProject && (
+      {activeProject && currentMedia && (
         <div className="cw-modal">
-          <button className="cw-close" onClick={() => setActiveProject(null)}>×</button>
+          <button
+            className="cw-close"
+            onClick={() => setActiveProject(null)}
+          >
+            ×
+          </button>
 
           {currentMedia.type === "image" ? (
             <img src={currentMedia.src} className="cw-modal-img" />
           ) : (
-            <video src={currentMedia.src} controls autoPlay className="cw-modal-video" />
+            <video
+              src={currentMedia.src}
+              controls
+              autoPlay
+              className="cw-modal-video"
+            />
           )}
 
-          <button className="cw-nav left" onClick={() =>
-            setActiveIndex((activeIndex - 1 + activeProject.media.length) % activeProject.media.length)
-          }>‹</button>
+          <button
+            className="cw-nav left"
+            onClick={() =>
+              setActiveIndex(
+                (activeIndex - 1 + activeProject.media.length) %
+                  activeProject.media.length
+              )
+            }
+          >
+            ‹
+          </button>
 
-          <button className="cw-nav right" onClick={() =>
-            setActiveIndex((activeIndex + 1) % activeProject.media.length)
-          }>›</button>
+          <button
+            className="cw-nav right"
+            onClick={() =>
+              setActiveIndex(
+                (activeIndex + 1) % activeProject.media.length
+              )
+            }
+          >
+            ›
+          </button>
         </div>
       )}
     </section>

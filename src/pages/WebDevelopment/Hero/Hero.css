@@ -322,3 +322,18 @@
     min-width: unset;
   }
 }
+
+
+/* CLIENT WORK BUTTON */
+.wd-btn.work {
+  background: linear-gradient(135deg, #0f172a, #1f2937);
+  color: #ffffff;
+  border: 1px solid #334155;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+}
+
+.wd-btn.work:hover {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 75px rgba(124, 58, 237, 0.55);
+}

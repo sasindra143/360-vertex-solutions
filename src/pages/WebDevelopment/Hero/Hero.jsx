@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
 export default function Hero() {
+  const navigate = useNavigate();
+
   return (
     <section className="wd-hero">
-      {/* grid background */}
       <div className="wd-grid-bg" />
 
       <div className="wd-hero-container">
@@ -33,8 +35,8 @@ export default function Hero() {
           <p className="wd-desc">
             <strong>Website development services.</strong> 100% custom website
             designing from ₹5,000. ₹0 advance, pay after satisfaction.
-            <strong> 7000+ sites</strong> delivered.
-            <strong> 15+ years experience.</strong>
+            <strong> 3 sites</strong> delivered.
+            <strong> Starts in 2026.</strong>
             <strong> 1.2s load speed.</strong>
           </p>
 
@@ -59,23 +61,36 @@ export default function Hero() {
             </div>
 
             <div className="wd-feature orange">
-              <div className="wd-icon">15+</div>
-              <h4>Years</h4>
-              <span>Experience</span>
+              <div className="wd-icon">🚀</div>
+              <h4>Journey</h4>
+              <span>Starts in 2026</span>
             </div>
           </div>
 
-          {/* ACTIONS */}
+          {/* ✅ ACTION BUTTONS – NOW 100% WORKING */}
           <div className="wd-actions">
-            <button className="wd-btn primary">Contact Us</button>
-            <button className="wd-btn outline">Get Free Quote</button>
+            {/* CONTACT → CONSULTATION PAGE */}
+            <button
+              className="wd-btn primary"
+              onClick={() => navigate("/consultation")}
+            >
+              Contact Us
+            </button>
+
+            {/* CLIENT WORK PAGE */}
+            <button
+              className="wd-btn work"
+              onClick={() => navigate("/client-work")}
+            >
+              Check Client’s Work
+            </button>
           </div>
 
           {/* TRUST */}
           <div className="wd-trust">
             <div>👨‍💻 Expert Team</div>
             <div>✅ Pay If Satisfied</div>
-            <div>🛡️ Satisfaction</div>
+            <div>🛡️ Satisfaction Guaranteed</div>
           </div>
         </div>
 
@@ -95,7 +110,7 @@ export default function Hero() {
               </div>
               <div className="wd-metric">
                 🚀 95+
-                <span>Score</span>
+                <span>Performance</span>
               </div>
               <div className="wd-metric">
                 🛡️ SSL

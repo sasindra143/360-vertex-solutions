@@ -22,15 +22,15 @@ import Profile from "./components/Profile/Profile";
 /* WEB DEVELOPMENT */
 import WebDevelopment from "./pages/WebDevelopment/WebDevelopment";
 import Consultation from "./pages/WebDevelopment/Consultation";
+import ClientWork from "./pages/WebDevelopment/ClientWork/ClientWork";
 
-/* ADMIN (ONLY ONE ADMIN PAGE) */
+/* ADMIN */
 import WebDevAdmin from "./pages/Admin/WebDevAdmin";
 
 /* ===============================
    LAYOUTS
 ================================ */
 
-/* MAIN WEBSITE LAYOUT */
 function HomeLayout() {
   return (
     <>
@@ -42,7 +42,6 @@ function HomeLayout() {
   );
 }
 
-/* WEB DEVELOPMENT LAYOUT */
 function WebDevLayout() {
   return (
     <>
@@ -53,12 +52,10 @@ function WebDevLayout() {
   );
 }
 
-/* AUTH LAYOUT */
 function AuthLayout() {
   return <Outlet />;
 }
 
-/* ADMIN LAYOUT */
 function AdminLayout() {
   return (
     <>
@@ -123,6 +120,14 @@ export default function App() {
       {/* WEB DEVELOPMENT */}
       <Route element={<WebDevLayout />}>
         <Route path="/web-development" element={<WebDevelopment />} />
+
+        {/* CONTACT US BUTTON */}
+        <Route path="/consultation" element={<Consultation />} />
+
+        {/* CLIENT WORK BUTTON */}
+        <Route path="/client-work" element={<ClientWork />} />
+
+        {/* KEEP OLD ROUTE (SAFE) */}
         <Route
           path="/web-development/consultation"
           element={<Consultation />}
@@ -137,7 +142,7 @@ export default function App() {
         <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Route>
 
-      {/* ADMIN – WEB DEVELOPMENT ONLY */}
+      {/* ADMIN */}
       <Route element={<AdminLayout />}>
         <Route
           path="/admin/web-development"

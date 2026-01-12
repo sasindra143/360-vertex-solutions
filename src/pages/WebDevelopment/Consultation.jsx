@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Consultation.css";
 
-const Consultation = () => {
+export default function Consultation() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -33,22 +33,19 @@ const Consultation = () => {
 
 📝 Requirement:
 ${requirement}
-    `;
+`;
 
-    const whatsappNumber = "917331159645";
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-
-    window.open(whatsappURL, "_blank");
+    window.open(
+      `https://wa.me/917331159645?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
   };
 
   return (
     <section className="consultation-page">
-      {/* BACK BUTTON */}
       <button
         className="back-btn"
-        onClick={() => navigate("/web-development")}
+        onClick={() => navigate("/")}
         aria-label="Go back"
       >
         ❮
@@ -59,7 +56,7 @@ ${requirement}
 
         <p>
           This is not a sales call. Share your requirements and we’ll respond
-          with a clear plan, realistic timeline, and honest guidance.
+          with a clear plan and honest guidance.
         </p>
 
         <form className="consultation-form" onSubmit={handleSubmit}>
@@ -68,7 +65,6 @@ ${requirement}
             <input
               type="text"
               name="name"
-              placeholder="Your full name"
               required
               value={formData.name}
               onChange={handleChange}
@@ -80,7 +76,6 @@ ${requirement}
             <input
               type="email"
               name="email"
-              placeholder="Your email address"
               required
               value={formData.email}
               onChange={handleChange}
@@ -92,7 +87,6 @@ ${requirement}
             <input
               type="tel"
               name="phone"
-              placeholder="Optional but helpful"
               value={formData.phone}
               onChange={handleChange}
             />
@@ -103,7 +97,6 @@ ${requirement}
             <textarea
               name="requirement"
               rows="5"
-              placeholder="Describe what you want to build"
               required
               value={formData.requirement}
               onChange={handleChange}
@@ -121,6 +114,4 @@ ${requirement}
       </div>
     </section>
   );
-};
-
-export default Consultation;
+}

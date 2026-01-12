@@ -2,35 +2,23 @@ import "./Testimonials.css";
 
 const testimonials = [
   {
-    name: "Karthik Kukkapalli",
-    image: "https://i.pravatar.cc/150?img=15",
+    name: "Ram",
+    image: "https://res.cloudinary.com/dvknx0hpm/image/upload/v1747906461/mama_djalmo.jpg",
     text:
-      "From mechanical engineering to software development, 360 Vertex Solutions provided a structured and execution-driven path that actually worked.",
+      "360° Vertex Solutions delivered exactly what we needed — a clean, professional website that truly represents PR Skillverse. The site is fast, easy to navigate, and works perfectly on mobile. Their communication and attention to detail made the entire process smooth and stress-free",
   },
   {
-    name: "Asim Ahmed",
-    image: "https://i.pravatar.cc/150?img=12",
+    name: "Vali",
+    image: "https://res.cloudinary.com/dvknx0hpm/image/upload/v1760504184/WhatsApp_Image_2025-10-14_at_21.52.00_22e76dad_fz66sf.jpg",
     text:
-      "Real projects, tough mock interviews, and constant feedback made me industry-ready instead of just certified.",
+      "A well-structured portfolio with clean design, smooth performance, and clear presentation of skills. Everything feels purposeful and easy to navigate.",
   },
   {
-    name: "Deep Shika",
-    image: "https://i.pravatar.cc/150?img=47",
+    name: "Praveen",
+    image: "https://res.cloudinary.com/dvknx0hpm/image/upload/v1768188154/WhatsApp_Image_2025-12-22_at_15.01.14_afayup.jpg",
     text:
       "Clear expectations, real-world delivery, and practical mentoring helped me gain confidence fast.",
-  },
-  {
-    name: "Vinay Kumar R",
-    image: "https://i.pravatar.cc/150?img=21",
-    text:
-      "Execution-focused guidance and hands-on work separated Vertex Solutions from generic platforms.",
-  },
-  {
-    name: "Pooja Girish",
-    image: "https://i.pravatar.cc/150?img=32",
-    text:
-      "Accountability, real reviews, and real ownership. No fluff, no shortcuts.",
-  },
+  }
 ];
 
 function Testimonials() {

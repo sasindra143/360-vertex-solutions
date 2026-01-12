@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./WebDevelopment.css";
 
-/* PAGE SECTIONS */
+/* PAGE SECTIONS (CORRECT PATHS) */
 import Hero from "./Hero/Hero";
 import Services from "./Services/Services";
 import Features from "./Features/Features";

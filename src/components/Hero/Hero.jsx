@@ -2,11 +2,17 @@ import "./Hero.css";
 
 function Hero() {
   const goToServices = () => {
-    window.location.hash = "#services";
+    const section = document.getElementById("services");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const goToContact = () => {
-    window.location.hash = "#contact";
+    const section = document.getElementById("contact");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
