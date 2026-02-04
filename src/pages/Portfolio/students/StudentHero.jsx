@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "./StudentHero.css";
 
 export default function StudentHero() {
+  const navigate = useNavigate(); // 🔥 THIS WAS MISSING
+
   return (
     <section className="hero">
 
@@ -41,9 +44,25 @@ export default function StudentHero() {
           </div>
         </div>
 
+        {/* ✅ FIXED BUTTON ACTIONS */}
         <div className="hero-actions">
-          <button className="btn-primary">Schedule a Call →</button>
-          <button className="btn-secondary">Contact Us</button>
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/portfolio/students/profile")}
+          >
+            Schedule a Call →
+          </button>
+
+          <button
+            className="btn-secondary"
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Contact Us
+          </button>
         </div>
 
         <div className="hero-trust">

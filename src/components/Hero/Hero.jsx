@@ -23,7 +23,7 @@ function Hero() {
           <br />
           with{" "}
           <span className="hero-highlight">
-            360° Vertex Solution’s
+            360 Vertex Solutions
           </span>
         </h1>
 

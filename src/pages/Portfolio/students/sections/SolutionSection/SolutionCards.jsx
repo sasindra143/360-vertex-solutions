@@ -1,85 +1,53 @@
-import "./SolutionCards.css";
+import "./SolutionCompare.css";
 
-export default function SolutionCards() {
+export default function SolutionCompare() {
   return (
-    <div className="solution-cards">
-      {/* CARD 01 */}
-      <div className="solution-card">
-        <span className="card-number">01</span>
-        <span className="card-pill">CUSTOM DESIGN</span>
+    <section className="solution-compare-section">
+      <h2 className="compare-title">
+        <span className="red">Invisible</span> to{" "}
+        <span className="green">Irresistible</span>
+      </h2>
 
-        <h4>Professional Online Presence</h4>
-        <p>
-          Build a portfolio website that reflects your personality and career
-          goals. Make every recruiter visit count.
-        </p>
+      <div className="compare-wrapper">
+        {/* LEFT SIDE */}
+        <div className="compare-column bad">
+          <div className="compare-header bad-header">
+            WITHOUT PORTFOLIO
+          </div>
 
-        <ul>
-          <li>Custom design for your role and industry</li>
-          <li>Fully responsive across all devices</li>
-          <li>Fast-loading and SEO-optimized for visibility</li>
-        </ul>
-      </div>
+          <ul>
+            <li>Recruiter spends 7 seconds on average</li>
+            <li>You look like every other candidate</li>
+            <li>Hard to prove your skills</li>
+            <li>Dependent on luck or referrals</li>
+            <li>Limited to resume text</li>
+            <li>Easily forgotten</li>
+            <li>No visibility</li>
+          </ul>
+        </div>
 
-      {/* CARD 02 */}
-      <div className="solution-card">
-        <span className="card-number">02</span>
-        <span className="card-pill">INTERACTIVE</span>
+        {/* CENTER ARROW */}
+        <div className="compare-middle">
+          <div className="arrow-circle">→</div>
+        </div>
 
-        <h4>Stand Out Instantly</h4>
-        <p>
-          Make a strong first impression in seconds. Your portfolio sets you
-          apart from hundreds of similar resumes.
-        </p>
+        {/* RIGHT SIDE */}
+        <div className="compare-column good">
+          <div className="compare-header good-header">
+            WITH YOUR PORTFOLIO
+          </div>
 
-        <ul>
-          <li>Unique layout that highlights individuality</li>
-          <li>Interactive sections recruiters love</li>
-          <li>Includes your professional domain name</li>
-        </ul>
-
-        <div className="card-dots">
-          <span></span>
-          <span></span>
-          <span></span>
+          <ul>
+            <li>Recruiter spends 3 minutes on average</li>
+            <li>You instantly stand out from 1000s of applicants</li>
+            <li>Show real proof through projects</li>
+            <li>Attracts opportunities organically</li>
+            <li>Builds trust through visuals & results</li>
+            <li>Professionally memorable</li>
+            <li>Works 24/7 to showcase your value</li>
+          </ul>
         </div>
       </div>
-
-      {/* CARD 03 */}
-      <div className="solution-card">
-        <span className="card-number">03</span>
-        <span className="card-pill">SEO READY</span>
-
-        <h4>Get Found by Recruiters</h4>
-        <p>
-          Be discoverable even when you're not applying. Get visible on Google
-          when recruiters search.
-        </p>
-
-        <ul>
-          <li>SEO-ready content for your role</li>
-          <li>One-click shareable portfolio link</li>
-          <li>Track visits and engagement</li>
-        </ul>
-      </div>
-
-      {/* CARD 04 */}
-      <div className="solution-card">
-        <span className="card-number">04</span>
-        <span className="card-pill">LIVE DEMOS</span>
-
-        <h4>Showcase Your Best Work</h4>
-        <p>
-          Show, don’t just tell. Let recruiters see real impact through live
-          examples.
-        </p>
-
-        <ul>
-          <li>Live demos & case studies</li>
-          <li>Resume download option</li>
-          <li>Direct Email / WhatsApp contact</li>
-        </ul>
-      </div>
-    </div>
+    </section>
   );
 }
