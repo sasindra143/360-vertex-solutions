@@ -18,6 +18,12 @@ const testimonials = [
     image: "https://res.cloudinary.com/dvknx0hpm/image/upload/v1768188154/WhatsApp_Image_2025-12-22_at_15.01.14_afayup.jpg",
     text:
       "Clear expectations, real-world delivery, and practical mentoring helped me gain confidence fast.",
+  },
+  {
+    name: "Priya",
+    image: "https://res.cloudinary.com/dvknx0hpm/image/upload/v1747810024/lad_khlsmx.png",
+    text:
+      "Excellent career guidance with focused interview questions that match actual industry expectations. Very helpful for serious job preparation.",
   }
 ];
 

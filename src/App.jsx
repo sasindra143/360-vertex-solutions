@@ -1,36 +1,53 @@
 import { Routes, Route, Outlet } from "react-router-dom";
 
-/* GLOBAL LAYOUT COMPONENTS */
+/* ===============================
+   GLOBAL COMPONENTS
+================================ */
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import FloatingButtons from "./components/FloatingButtons/FloatingButtons";
 
-/* HOME SECTIONS */
+/* ===============================
+   HOME SECTIONS
+================================ */
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Testimonials from "./components/Testimonials/Testimonials";
 import Contact from "./components/Contact/Contact";
 
-/* AUTH */
+/* ===============================
+   AUTH
+================================ */
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import ResetPassword from "./components/Auth/ResetPassword";
 import Profile from "./components/Profile/Profile";
 
-/* WEB DEVELOPMENT */
+/* ===============================
+   WEB DEVELOPMENT
+================================ */
 import WebDevelopment from "./pages/WebDevelopment/WebDevelopment";
 import Consultation from "./pages/WebDevelopment/Consultation";
 import ClientWork from "./pages/WebDevelopment/ClientWork/ClientWork";
 
-/* ADMIN */
+/* ===============================
+   PORTFOLIO
+================================ */
+import PortfolioMainPage from "./pages/Portfolio/PortfolioMainPage";
+import StudentsPage from "./pages/Portfolio/students/StudentsPage";
+
+/* ===============================
+   ADMIN
+================================ */
 import WebDevAdmin from "./pages/Admin/WebDevAdmin";
 
 /* ===============================
    LAYOUTS
 ================================ */
 
+/* MAIN SITE LAYOUT */
 function HomeLayout() {
   return (
     <>
@@ -42,6 +59,7 @@ function HomeLayout() {
   );
 }
 
+/* WEB DEV PAGES (NO MAIN HEADER) */
 function WebDevLayout() {
   return (
     <>
@@ -52,10 +70,17 @@ function WebDevLayout() {
   );
 }
 
+/* STUDENTS PORTFOLIO (NO MAIN HEADER, NO FOOTER) */
+function StudentsLayout() {
+  return <Outlet />;
+}
+
+/* AUTH */
 function AuthLayout() {
   return <Outlet />;
 }
 
+/* ADMIN */
 function AdminLayout() {
   return (
     <>
@@ -111,23 +136,24 @@ function NotFound() {
 export default function App() {
   return (
     <Routes>
+
       {/* MAIN WEBSITE */}
       <Route element={<HomeLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/portfolio-creation" element={<PortfolioMainPage />} />
+      </Route>
+
+      {/* STUDENTS PORTFOLIO */}
+      <Route element={<StudentsLayout />}>
+        <Route path="/portfolio/students" element={<StudentsPage />} />
       </Route>
 
       {/* WEB DEVELOPMENT */}
       <Route element={<WebDevLayout />}>
         <Route path="/web-development" element={<WebDevelopment />} />
-
-        {/* CONTACT US BUTTON */}
         <Route path="/consultation" element={<Consultation />} />
-
-        {/* CLIENT WORK BUTTON */}
         <Route path="/client-work" element={<ClientWork />} />
-
-        {/* KEEP OLD ROUTE (SAFE) */}
         <Route
           path="/web-development/consultation"
           element={<Consultation />}
@@ -152,6 +178,7 @@ export default function App() {
 
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
+
     </Routes>
   );
 }

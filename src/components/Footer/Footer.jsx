@@ -49,7 +49,7 @@ function Footer() {
             <a href="www.linkedin.com/in/sasindra-madduri" target="_blank" rel="noreferrer">
               <FaLinkedinIn />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+            <a href="https://www.instagram.com/vertex_solutions06?igsh=MTRpY3ZqNzZnNWRpbw==" target="_blank" rel="noreferrer">
               <FaInstagram />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noreferrer">

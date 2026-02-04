@@ -92,7 +92,6 @@ export default function Services() {
                 </ul>
               </div>
 
-              {/* 🔥 NAVIGATION FIXED */}
               <Link
                 to={service.link}
                 className="service-btn"
