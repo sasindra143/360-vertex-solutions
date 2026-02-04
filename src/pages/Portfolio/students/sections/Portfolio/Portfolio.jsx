@@ -25,7 +25,7 @@ export default function Portfolio() {
           urlText="sasindra-m-portfolio.netlify.app"
           image="https://res.cloudinary.com/dvknx0hpm/image/upload/v1770167886/Screenshot_2026-02-04_064724_mrivkc.png"
           plan="STANDARD"
-          title="Professional Elite"
+          title="Full Stack Developer"
           description="Clean, modern design perfect for data analysts and professionals seeking a polished online presence."
           features={[
             "Modern Layout",
@@ -33,7 +33,7 @@ export default function Portfolio() {
             "Contact Form",
             "Responsive",
           ]}
-          link="https://pradeep-m-portfolio.netlify.app"
+          link="https://sasindraportfolio.netlify.app/"
         />
 
         <TemplateCard
@@ -48,7 +48,7 @@ export default function Portfolio() {
             "Skills Section",
             "Mobile First",
           ]}
-          link="https://prasanya-portfolio.netlify.app"
+          link="https://sasindra143.github.io/My-Portfolio/"
         />
       </div>
 
