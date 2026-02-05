@@ -29,7 +29,7 @@ export default function PricingSection() {
           </p>
 
           <div className="price">
-            ₹2000 <span>one-time payment</span>
+            ₹499 <span>one-time payment</span>
           </div>
 
           <ul>
@@ -62,7 +62,7 @@ export default function PricingSection() {
           </p>
 
           <div className="price">
-            ₹3000 <span>one-time payment</span>
+            ₹999 <span>one-time payment</span>
           </div>
 
           <ul>
@@ -91,7 +91,7 @@ export default function PricingSection() {
           </p>
 
           <div className="price">
-            ₹5000 <span>onwards</span>
+            ₹1499 <span>onwards</span>
           </div>
 
           <ul>

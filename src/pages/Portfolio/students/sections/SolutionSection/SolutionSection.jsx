@@ -9,9 +9,9 @@ export default function SolutionSection() {
   return (
     <section className="solution-section">
       <SolutionHero />
-      <SolutionCards />
+    
       <SolutionCompare />
-      <SolutionCTA />
+      
     </section>
   );
 }
