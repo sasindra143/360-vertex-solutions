@@ -28,7 +28,7 @@ function Hero() {
         </h1>
 
         <p className="hero-text">
-          At 360° Vertex Solutions, we empower students, job seekers, and
+          At 360 Vertex Solutions, we empower students, job seekers, and
           professionals with the tools and guidance they need to stand out in
           today's competitive world. From portfolio websites to resume building,
           e-commerce solutions, graphic design, and interview preparation, we

@@ -7,6 +7,7 @@
     radial-gradient(60% 60% at 50% 0%, rgba(168,85,247,0.25), transparent 70%),
     #05050d;
   color: #e5e7eb;
+  overflow: hidden; /* IMPORTANT for marquee */
 }
 
 /* ===============================
@@ -44,14 +45,27 @@
   color: #9ca3af;
 }
 
-/* ===============================
-   GRID
-================================ */
+/* ======================================================
+   GRID → CONVERTED TO AUTO SCROLL MARQUEE (KEY PART)
+====================================================== */
+
 .portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 440px);
-  justify-content: center;
-  gap: 60px;
+  display: flex;                 /* override grid */
+  gap: 40px;
+  width: max-content;
+  animation: scrollRTL 45s linear infinite;
+  will-change: transform;
+}
+
+/* Pause scrolling on hover */
+.portfolio-grid:hover {
+  animation-play-state: paused;
+}
+
+/* Wrapper behavior (centered scrolling track) */
+.portfolio-section > .portfolio-grid {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ===============================
@@ -59,6 +73,7 @@
 ================================ */
 .template-card {
   position: relative;
+  flex: 0 0 320px;              /* fixed card width */
   border-radius: 28px;
   background: linear-gradient(180deg, #0b0b14, #05050d);
   border: 1px solid rgba(168,85,247,0.35);
@@ -72,7 +87,9 @@
   box-shadow: 0 0 120px rgba(168,85,247,0.45);
 }
 
-/* BADGE */
+/* ===============================
+   BADGE
+================================ */
 .template-badge {
   position: absolute;
   top: 18px;
@@ -125,7 +142,7 @@
    BODY
 ================================ */
 .card-body {
-  padding: 28px;
+  padding: 26px;
 }
 
 .template-plan {
@@ -134,7 +151,7 @@
 }
 
 .card-body h3 {
-  font-size: 26px;
+  font-size: 24px;
   margin: 8px 0;
 }
 
@@ -142,15 +159,17 @@
   font-size: 14px;
   color: #9ca3af;
   line-height: 1.6;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
-/* FEATURES */
+/* ===============================
+   FEATURES
+================================ */
 .feature-list {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
 
 .feature-list span {
@@ -161,15 +180,17 @@
   color: #d8b4fe;
 }
 
-/* BUTTON */
+/* ===============================
+   BUTTON
+================================ */
 .view-btn {
   display: block;
   text-align: center;
-  padding: 16px;
+  padding: 15px;
   border-radius: 999px;
   background: linear-gradient(135deg, #a855f7, #7c3aed);
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
 }
@@ -211,14 +232,194 @@
 }
 
 /* ===============================
+   RIGHT → LEFT ANIMATION
+================================ */
+@keyframes scrollRTL {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===============================
    RESPONSIVE
 ================================ */
-@media (max-width: 1000px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 1200px) {
+  .template-card {
+    flex: 0 0 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .template-card {
+    flex: 0 0 280px;
   }
 
   .portfolio-header h2 {
-    font-size: 36px;
+    font-size: 38px;
   }
 }
+
+@media (max-width: 600px) {
+  .template-card {
+    flex: 0 0 260px;
+  }
+
+  .portfolio-header h2 {
+    font-size: 32px;
+  }
+
+  .portfolio-header p {
+    font-size: 14px;
+  }
+}
+
+
+
+/* ===============================
+   MARQUEE WRAPPER (NEW)
+================================ */
+.portfolio-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===============================
+   GRID (SCROLL TRACK)
+================================ */
+.portfolio-grid {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  animation: scrollRTL 40s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover */
+.portfolio-marquee:hover .portfolio-grid {
+  animation-play-state: paused;
+}
+
+/* ===============================
+   SEAMLESS RIGHT → LEFT
+================================ */
+@keyframes scrollRTL {
+  0% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* ===============================
+   MORE PORTFOLIOS CARD (NEW)
+================================ */
+
+.more-portfolios-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.more-portfolios-body {
+  padding: 34px 26px;
+}
+
+.more-portfolios-body h3 {
+  font-size: 24px;
+  margin: 12px 0;
+  color: #ffffff;
+}
+
+.more-portfolios-body p {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin-bottom: 26px;
+}
+
+/* ===============================
+   BUTTON LIST
+================================ */
+
+.more-portfolio-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.more-portfolio-buttons a {
+  display: block;
+  padding: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.more-portfolio-buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(168,85,247,0.7);
+}
+
+/* ===============================
+   MOBILE TWEAK
+================================ */
+
+@media (max-width: 600px) {
+  .more-portfolios-body h3 {
+    font-size: 22px;
+  }
+
+  .more-portfolio-buttons a {
+    font-size: 13.5px;
+    padding: 13px;
+  }
+}
+
+
+/* ===============================
+   PORTFOLIO SLIDER (LIKE TESTIMONIALS)
+================================ */
+
+.portfolio-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.portfolio-track {
+  display: flex;
+  width: max-content;
+  animation: scrollLeftPortfolio 35s linear infinite;
+}
+
+.portfolio-marquee:hover .portfolio-track {
+  animation-play-state: paused;
+}
+
+/* Portfolio grid reused (DO NOT REMOVE) */
+.portfolio-grid {
+  display: flex;
+  gap: 40px;
+  padding-right: 40px;
+}
+
+/* Same logic as testimonial scroll */
+@keyframes scrollLeftPortfolio {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+

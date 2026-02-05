@@ -14,7 +14,7 @@ export default function Services() {
       cta: "Explore Web Development",
     },
     {
-      title: "ATS Resume Building",
+      title: "ATS Resume Building & Linkedin Optimization",
       lines: [
         "ATS-optimized professional resumes",
         "Recruiter-focused keyword strategy",
